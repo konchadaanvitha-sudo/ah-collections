@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Stock Manager – AH Collections</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  body { background: #1A1209; }
+  .lock-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .lock-box {
+    background: #FAF8F4;
+    border-radius: 10px;
+    padding: 40px 36px;
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+    border: 1px solid var(--border);
+  }
+  .lock-box .lock-icon { font-size: 48px; margin-bottom: 12px; }
+  .lock-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--dark); margin-bottom: 6px;
+  }
+  .lock-box p { font-size: 13px; color: #8B7040; margin-bottom: 22px; }
+  .lock-box input[type=password] {
+    width: 100%; padding: 12px 14px;
+    border: 1.5px solid var(--border); border-radius: 4px;
+    font-size: 16px; text-align: center; letter-spacing: 6px;
+    outline: none; margin-bottom: 14px;
+    font-family: monospace;
+  }
+  .lock-box input[type=password]:focus { border-color: var(--gold); }
+  .unlock-btn {
+    width: 100%; padding: 13px;
+    background: var(--gold); color: #fff; border: none;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    border-radius: 4px; cursor: pointer; font-weight: 700;
+    font-family: 'Lato', sans-serif;
+  }
+  .unlock-btn:hover { background: var(--gold-dark); }
+  .error-msg {
+    display: none;
+    color: #C0392B; font-size: 13px; margin-top: 10px;
+  }
+
+  /* Stock Panel */
+  #stock-panel { display: none; }
+  .stock-page {
+    max-width: 820px; margin: 0 auto; padding: 28px 40px 60px;
+  }
+  .stock-page h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 400; color: var(--dark); margin-bottom: 4px;
+  }
+  .stock-page .admin-note {
+    font-size: 13px; color: #8B7040; margin-bottom: 28px;
+  }
+  .stock-section { margin-bottom: 36px; }
+  .stock-section h2 {
+    font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-dark); font-weight: 700;
+    border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 14px;
+  }
+  .stock-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 14px; background: #FAF8F4;
+    border: 1px solid var(--border); border-radius: 4px; margin-bottom: 8px;
+  }
+  .stock-row .item-name { flex: 1; font-size: 14px; color: var(--dark); font-weight: 700; }
+  .stock-row .item-price { font-size: 12px; color: #8B7040; min-width: 60px; }
+  .stock-row .stock-num {
+    width: 70px; padding: 7px 10px; border: 1.5px solid var(--border);
+    border-radius: 4px; font-size: 15px; font-weight: 700;
+    text-align: center; font-family: monospace;
+  }
+  .stock-num:focus { border-color: var(--gold); outline: none; }
+  .stock-num.zero { color: #C0392B; border-color: #C0392B; background: #FFF0EE; }
+  .save-row-btn {
+    padding: 7px 16px; background: var(--gold); color: #fff; border: none;
+    border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .save-row-btn:hover { background: var(--gold-dark); }
+  .saved-tick { display: none; color: #27AE60; font-size: 18px; }
+  .save-all-btn {
+    width: 100%; padding: 14px; background: var(--gold-dark); color: #fff;
+    border: none; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    border-radius: 4px; cursor: pointer; font-weight: 700;
+    font-family: 'Lato', sans-serif; margin-top: 10px;
+  }
+  .save-all-btn:hover { background: #5A4010; }
+  .logout-btn {
+    display: inline-block; margin-top: 16px; padding: 8px 20px;
+    background: none; border: 1px solid var(--border); color: #8B7040;
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    border-radius: 4px; cursor: pointer;
+  }
+  .logout-btn:hover { background: #F0E9D0; }
+</style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lock-screen" class="lock-screen">
+  <div class="lock-box">
+    <div class="lock-icon">🔐</div>
+    <h2>Admin Stock Manager</h2>
+    <p>This page is only for AH Collections owner.<br/>Enter your password to continue.</p>
+    <input type="password" id="pwd-input" placeholder="••••••••"
+      onkeydown="if(event.key==='Enter')checkPassword()"/>
+    <button class="unlock-btn" onclick="checkPassword()">Enter</button>
+    <div class="error-msg" id="error-msg">❌ Wrong password. Try again.</div>
+  </div>
+</div>
+
+<!-- STOCK PANEL (shown after correct password) -->
+<div id="stock-panel">
+  <nav style="background:#FAF8F4;border-bottom:1px solid var(--border)">
+    <div class="nav-logo" style="padding:14px 40px;font-family:'Georgia',serif;font-size:18px;letter-spacing:3px;color:var(--gold-dark);font-weight:700">
+      AH Collections — Admin
+    </div>
+  </nav>
+
+  <div class="stock-page">
+    <h1>🗃️ Stock Manager</h1>
+    <p class="admin-note">Set stock to <strong>0</strong> to show "Out of Stock" to customers. Changes save instantly.</p>
+
+    <div id="stock-sections"></div>
+
+    <button class="save-all-btn" onclick="saveAll()">💾 Save All Stock</button>
+    <br/>
+    <button class="logout-btn" onclick="logout()">🔒 Lock & Exit</button>
+  </div>
+</div>
+
+<script src="products.js"></script>
+<script>
+// ── CHANGE YOUR PASSWORD HERE ──────────────────────────────
+var ADMIN_PASSWORD = "ahcollections2025";
+// ──────────────────────────────────────────────────────────
+
+function checkPassword() {
+  var entered = document.getElementById('pwd-input').value;
+  if (entered === ADMIN_PASSWORD) {
+    document.getElementById('lock-screen').style.display = 'none';
+    document.getElementById('stock-panel').style.display  = 'block';
+    document.body.style.background = '#fff';
+    buildStockPanel();
+  } else {
+    var err = document.getElementById('error-msg');
+    err.style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-input').focus();
+    setTimeout(function(){ err.style.display='none'; }, 3000);
+  }
+}
+
+function logout() {
+  document.getElementById('lock-screen').style.display = 'flex';
+  document.getElementById('stock-panel').style.display  = 'none';
+  document.body.style.background = '#1A1209';
+  document.getElementById('pwd-input').value = '';
+}
+
+var catNames = {
+  chains:    '📿 Anti-Tarnish Chains',
+  bracelets: '💛 Anti-Tarnish Bracelets',
+  earrings:  '✨ Earrings',
+  bangles:   '🪬 Handcrafted Thread Bangles'
+};
+
+function buildStockPanel() {
+  var container = document.getElementById('stock-sections');
+  container.innerHTML = '';
+  ['chains','bracelets','earrings','bangles'].forEach(function(cat) {
+    var items = PRODUCTS[cat] || [];
+    var sec = document.createElement('div');
+    sec.className = 'stock-section';
+    sec.innerHTML = '<h2>' + catNames[cat] + '</h2>';
+    items.forEach(function(p) {
+      var currentStock = getStock(p.id, p.stock);
+      var row = document.createElement('div');
+      row.className = 'stock-row';
+      row.innerHTML =
+        '<div class="item-name">' + p.name + '</div>' +
+        '<div class="item-price">₹' + p.price + '</div>' +
+        '<input type="number" min="0" max="999" class="stock-num' + (currentStock===0?' zero':'') + '"' +
+          ' id="si-' + p.id + '" value="' + currentStock + '"' +
+          ' oninput="highlightZero(this)"' +
+        '/>' +
+        '<button class="save-row-btn" onclick="saveOne(\'' + p.id + '\')">Save</button>' +
+        '<span class="saved-tick" id="tick-' + p.id + '">✓</span>';
+      sec.appendChild(row);
+    });
+    container.appendChild(sec);
+  });
+}
+
+function highlightZero(input) {
+  if (parseInt(input.value) === 0) {
+    input.classList.add('zero');
+  } else {
+    input.classList.remove('zero');
+  }
+}
+
+function saveOne(id) {
+  var input = document.getElementById('si-' + id);
+  var val   = parseInt(input.value);
+  if (isNaN(val) || val < 0) val = 0;
+  setStock(id, val);
+  var tick = document.getElementById('tick-' + id);
+  tick.style.display = 'inline';
+  setTimeout(function(){ tick.style.display='none'; }, 1500);
+}
+
+function saveAll() {
+  ['chains','bracelets','earrings','bangles'].forEach(function(cat) {
+    (PRODUCTS[cat] || []).forEach(function(p) {
+      var input = document.getElementById('si-' + p.id);
+      if (input) {
+        var val = parseInt(input.value);
+        setStock(p.id, isNaN(val)||val<0 ? 0 : val);
+      }
+    });
+  });
+  alert('✅ All stock saved successfully!');
+}
+
+// Enter key on password field
+document.getElementById('pwd-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPassword();
+});
+</script>
+</body>
+</html>
