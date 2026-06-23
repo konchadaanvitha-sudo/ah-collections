@@ -1,6 +1,6 @@
 // ─── CART STORAGE ────────────────────────────────────────────
 // YOUR WHATSAPP NUMBER — change this to your number with country code
-var WHATSAPP_NUMBER = "919876543210"; // India +91, replace with your number
+var WHATSAPP_NUMBER = "916304240589"; // India +91, replace with your number
 
 function getCart() {
   try {
