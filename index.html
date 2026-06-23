@@ -5,8 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AH Collections – Handcrafted Jewellery</title>
 <link rel="stylesheet" href="style.css"/>
+<style>
+/* ── MARQUEE SCROLLING BAR ── */
+.marquee-bar {
+  background: var(--gold-dark);
+  color: #fff;
+  padding: 9px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--gold);
+}
+.marquee-track {
+  display: inline-block;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-item {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0 40px;
+}
+.marquee-dot {
+  display: inline-block;
+  color: var(--gold-light);
+  font-size: 10px;
+  opacity: 0.7;
+  padding: 0 8px;
+}
+</style>
 </head>
 <body>
+
+<!-- NAV -->
 <nav>
   <div class="nav-logo">AH Collections</div>
   <div class="nav-links">
@@ -15,6 +52,35 @@
     <a href="contact.html">Contact</a>
   </div>
 </nav>
+
+<!-- SCROLLING ANNOUNCEMENT BAR -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item">✦ We sell Anti-Tarnish Chains</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">✦ Anti-Tarnish Bracelets</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">✦ Beautiful Earrings</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">✦ Customized Thread Bangles</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">🎉 10% OFF on All Orders!</span>
+    <span class="marquee-dot">◆</span>
+    <!-- Repeated so scroll looks seamless -->
+    <span class="marquee-item">✦ We sell Anti-Tarnish Chains</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">✦ Anti-Tarnish Bracelets</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">✦ Beautiful Earrings</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">✦ Customized Thread Bangles</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">🎉 10% OFF on All Orders!</span>
+    <span class="marquee-dot">◆</span>
+  </div>
+</div>
+
+<!-- HERO -->
 <section class="hero">
   <img src="logo1.png" alt="AH Collections Logo" class="hero-logo" onerror="this.style.display='none'"/>
   <h1>AH Collections</h1>
@@ -22,6 +88,8 @@
   <p class="hero-desc">Anti-tarnish chains, bracelets, earrings &amp; handcrafted thread bangles — crafted with love. Customization available.</p>
   <a href="shop.html" class="btn-gold">Shop Now</a>
 </section>
+
+<!-- OUR COLLECTIONS — display only, NOT clickable, NO Shop Now button -->
 <section class="collections-section">
   <p class="sec-sub">What We Offer</p>
   <h2 class="sec-title">Our Collections</h2>
@@ -43,11 +111,14 @@
       <p>Handcrafted Thread Bangles</p>
     </div>
   </div>
-  <div class="collections-cta"><a href="shop.html" class="btn-gold">Shop Now</a></div>
+  <!-- Shop Now button REMOVED from here as requested -->
 </section>
+
+<!-- FOOTER — no COD -->
 <footer>
   <div class="f-logo">AH Collections</div>
   <p>© 2025 AH Collections &nbsp;·&nbsp; Handcrafted with Love &nbsp;·&nbsp; Ships Pan India</p>
 </footer>
+
 </body>
 </html>
