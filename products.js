@@ -2,7 +2,6 @@
 // TO ADD YOUR PHOTOS: put images in the /images/ folder
 // then replace the "image" path below with the filename.
 // Set stock to 0 to show "Out of Stock" to customers.
-
 const PRODUCTS = {
   chains: [
     { id:"c1", name:"Figaro Chain",        price:399, image:"images/Chain1.jpeg",  stock:10 },
