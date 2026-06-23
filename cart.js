@@ -1,6 +1,6 @@
 // ─── CART STORAGE ────────────────────────────────────────────
 // YOUR WHATSAPP NUMBER — change this to your number with country code
-var WHATSAPP_NUMBER = "916304240589"; // India +91, replace with your number
+var WHATSAPP_NUMBER = "919876543210"; // India +91, replace with your number
 
 function getCart() {
   try {
@@ -14,7 +14,20 @@ function saveCart(cart) {
 
 function addToCart(id, name, price, image) {
   var cart = getCart();
-  var qty  = parseInt(document.getElementById('qty-' + id).textContent) || 1;
+  var qty  = parseInt(document.getElementById('qty-' + id).textContent) || 0;
+
+  // Do not add if qty is 0 — show a shake warning instead
+  if (qty === 0) {
+    var btn = document.getElementById('acb-' + id);
+    btn.textContent = 'Select quantity first!';
+    btn.style.background = '#C0392B';
+    setTimeout(function(){
+      btn.textContent = 'Add to Cart';
+      btn.style.background = '';
+    }, 1800);
+    return;
+  }
+
   var existing = cart.find(function(i){ return i.id === id; });
   if (existing) {
     existing.qty += qty;
