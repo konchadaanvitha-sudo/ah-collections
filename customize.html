@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Customize Bangles – AH Collections</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">AH Collections</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+<div class="page-header">
+  <a href="category.html?cat=bangles" class="back-link">← Back to Thread Bangles</a>
+  <h1>🪬 Customize Your Bangles</h1>
+  <p>Tell us your preferences and we'll craft your perfect bangles!</p>
+</div>
+<div class="customize-page">
+  <form id="cust-form" onsubmit="sendCustomOrder(event)">
+    <div class="form-row">
+      <div class="form-section">
+        <label>Your Name *</label>
+        <input type="text" id="cust-name" placeholder="e.g. Priya Sharma" required/>
+      </div>
+      <div class="form-section">
+        <label>WhatsApp Number *</label>
+        <input type="tel" id="cust-phone" placeholder="e.g. 9876543210" required/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-section">
+        <label>Thread Colour *</label>
+        <select id="cust-colour" required>
+          <option value="">Select a colour</option>
+          <option>Red</option>
+          <option>White</option>
+          <option>Green</option>
+          <option>Blue</option>
+          <option>Pink</option>
+          <option>Yellow</option>
+          <option>Purple</option>
+          <option>Orange</option>
+          <option>Maroon</option>
+          <option>Multicolour</option>
+          <option>Custom (describe below)</option>
+        </select>
+      </div>
+      <div class="form-section">
+        <label>Gold Accent Style</label>
+        <select id="cust-accent">
+          <option value="">Select a style</option>
+          <option>Plain Gold Beads</option>
+          <option>Gold Charm Pendant</option>
+          <option>Gold Coil Wrap</option>
+          <option>Stone + Gold</option>
+          <option>No Gold Accent</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-section">
+        <label>Bangle Size (in cm)</label>
+        <input type="text" id="cust-size" placeholder="e.g. 2.4 or measure wrist"/>
+      </div>
+      <div class="form-section">
+        <label>Quantity</label>
+        <select id="cust-qty">
+          <option>1 bangle</option>
+          <option>2 bangles</option>
+          <option>4 bangles (set)</option>
+          <option>6 bangles (set)</option>
+          <option>Custom quantity (mention below)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-section">
+      <label>Occasion</label>
+      <select id="cust-occasion">
+        <option value="">Select occasion (optional)</option>
+        <option>Everyday Wear</option>
+        <option>Wedding / Bridal</option>
+        <option>Festival</option>
+        <option>Birthday Gift</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-section">
+      <label>Design Notes / Special Request</label>
+      <textarea id="cust-notes" placeholder="Describe your design idea, patterns, colour combination, or any special request..."></textarea>
+    </div>
+    <div class="form-section">
+      <label>Reference Image (optional)</label>
+      <div class="file-drop" onclick="document.getElementById('ref-file').click()">
+        <input type="file" id="ref-file" accept="image/*" onchange="previewRefImage(this)"/>
+        <div class="drop-icon">📎</div>
+        <p>Click to upload a reference image</p>
+        <small>JPG, PNG, WEBP — Max 10MB</small>
+        <div id="fn-label"></div>
+        <img id="file-preview" src="" alt="preview"/>
+      </div>
+    </div>
+    <button type="submit" class="submit-cust-btn">Send My Customization Request via WhatsApp</button>
+    <div class="success-box" id="success-box">
+      ✅ Your request has been sent! We'll contact you on WhatsApp within 24 hours to confirm your order.
+    </div>
+  </form>
+</div>
+<div class="cart-float" onclick="window.location='cart.html'">🛒<span id="cart-count">0</span></div>
+<footer>
+  <div class="f-logo">AH Collections</div>
+  <p>© 2025 AH Collections &nbsp;·&nbsp; Ships Pan India</p>
+</footer>
+<script src="cart.js"></script>
+<script>
+  updateCartBadge();
+  function previewRefImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var prev = document.getElementById('file-preview');
+        prev.src = e.target.result;
+        prev.style.display = 'block';
+        document.getElementById('fn-label').textContent = '✓ ' + input.files[0].name;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  function sendCustomOrder(e) {
+    e.preventDefault();
+    var name     = document.getElementById('cust-name').value;
+    var phone    = document.getElementById('cust-phone').value;
+    var colour   = document.getElementById('cust-colour').value;
+    var accent   = document.getElementById('cust-accent').value;
+    var size     = document.getElementById('cust-size').value || 'Not specified';
+    var qty      = document.getElementById('cust-qty').value;
+    var occasion = document.getElementById('cust-occasion').value || 'Not specified';
+    var notes    = document.getElementById('cust-notes').value || 'None';
+    var msg =
+      "🪬 *Custom Bangle Order – AH Collections*\n\n" +
+      "*Name:* " + name + "\n" +
+      "*Phone:* " + phone + "\n\n" +
+      "*Thread Colour:* " + colour + "\n" +
+      "*Gold Accent:* " + (accent || 'Not selected') + "\n" +
+      "*Bangle Size:* " + size + "\n" +
+      "*Quantity:* " + qty + "\n" +
+      "*Occasion:* " + occasion + "\n\n" +
+      "*Design Notes:*\n" + notes + "\n\n" +
+      "Please confirm my order and send the payment QR code. Thank you! 🙏";
+    var whatsapp = "919876543210"; // CHANGE THIS to your WhatsApp number
+    window.open("https://wa.me/" + whatsapp + "?text=" + encodeURIComponent(msg), '_blank');
+    document.getElementById('success-box').style.display = 'block';
+    document.querySelector('.submit-cust-btn').textContent = '✓ Request Sent!';
+    document.querySelector('.submit-cust-btn').style.background = '#639922';
+    document.querySelector('.submit-cust-btn').disabled = true;
+  }
+</script>
+</body>
+</html>

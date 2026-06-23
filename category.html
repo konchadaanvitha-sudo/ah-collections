@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Collection – AH Collections</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">AH Collections</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html" class="active">Shop</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+<div class="page-header">
+  <a href="shop.html" class="back-link">← Back to Shop</a>
+  <h1 id="cat-title">Collection</h1>
+</div>
+
+<!-- ADMIN STOCK PANEL: only visible at category.html?cat=chains&admin=1 -->
+<div id="admin-panel" class="admin-panel" style="display:none">
+  <div class="admin-inner">
+    <h3>🔐 Admin — Manage Stock</h3>
+    <p>Only you can see this. Customers only see "Out of Stock" when stock = 0.</p>
+    <div id="admin-stock-controls"></div>
+  </div>
+</div>
+
+<div class="products-grid" id="products-grid"></div>
+
+<!-- CUSTOMIZATION BUTTON — only for bangles -->
+<div id="customize-section" style="display:none;padding:10px 48px 48px">
+  <div class="customize-banner">
+    <h3>Want Something Unique? ✨</h3>
+    <p>Design your own thread bangles — pick your colour, size, design &amp; more.</p>
+    <a href="customize.html" class="btn-gold" style="margin-top:18px;display:inline-block">Customize My Bangles</a>
+  </div>
+</div>
+
+<div class="cart-float" onclick="window.location='cart.html'">🛒<span id="cart-count">0</span></div>
+
+<footer>
+  <div class="f-logo">AH Collections</div>
+  <p>© 2025 AH Collections &nbsp;·&nbsp; Ships Pan India</p>
+</footer>
+<script src="cart.js"></script>
+<script src="products.js"></script>
+<script>
+  var params   = new URLSearchParams(window.location.search);
+  var cat      = params.get('cat') || 'chains';
+  var isAdmin  = params.get('admin') === '1';
+  var titles   = {chains:'📿 Anti-Tarnish Chains', bracelets:'💛 Anti-Tarnish Bracelets', earrings:'✨ Earrings', bangles:'🪬 Handcrafted Thread Bangles'};
+  document.getElementById('cat-title').textContent = titles[cat] || 'Collection';
+  document.title = (titles[cat] || 'Collection') + ' – AH Collections';
+  if (isAdmin) document.getElementById('admin-panel').style.display = 'block';
+  if (cat === 'bangles') document.getElementById('customize-section').style.display = 'block';
+  renderProducts(cat, isAdmin);
+  updateCartBadge();
+</script>
+</body>
+</html>
