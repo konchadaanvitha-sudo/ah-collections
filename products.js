@@ -70,7 +70,6 @@ const PRODUCTS = {
     { id:"bg5", name:"Thread Bangle 5", price:299, image:"bangles5.jpeg", stock:10 },
   ]
 };
-
 function getStock(productId, defaultStock) {
   var saved = localStorage.getItem('stock_' + productId);
   return saved !== null ? parseInt(saved) : defaultStock;
