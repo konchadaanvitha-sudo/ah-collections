@@ -27,7 +27,6 @@ const PRODUCTS = {
     { id:"c25", name:"Chain 25", price:399, image:"chain26.jpeg",  stock:10 },
     { id:"c26", name:"Chain 26", price:399, image:"chain27.jpeg",  stock:10 },
     { id:"c27", name:"Chain 27", price:399, image:"chain28.jpeg",  stock:10 },
-    { id:"c28", name:"Chain 28", price:399, image:"chain28.jpeg", stock:10 },
   ],
   bracelets: [
     { id:"b1",  name:"Bracelet 1",  price:349, image:"bracelet2.jpeg",  stock:10 },
@@ -53,15 +52,16 @@ const PRODUCTS = {
     { id:"b21", name:"Kada 7",      price:349, image:"kada8.jpeg",      stock:10 },
   ],
   earrings: [
-    { id:"e1", name:"Earrings 1", price:279, image:"earrings1.jpeg", stock:20 },
-    { id:"e2", name:"Earrings 2", price:279, image:"earrings2.jpeg", stock:20 },
-    { id:"e3", name:"Earrings 3", price:279, image:"earrings3.jpeg", stock:20 },
-    { id:"e4", name:"Earrings 4", price:279, image:"earrings4.jpeg", stock:20 },
-    { id:"e5", name:"Earrings 5", price:279, image:"earrings5.jpeg", stock:20 },
-    { id:"e6", name:"Earrings 6", price:279, image:"earrings6.jpeg", stock:20 },
-    { id:"e7", name:"Earrings 7", price:279, image:"earrings7.jpeg", stock:20 },
-    { id:"e8", name:"Earrings 8", price:279, image:"earrings8.jpeg", stock:20 },
-    { id:"e9", name:"Earrings 9", price:279, image:"earrings9.jpeg", stock:20 },
+    { id:"e1", name:"Earrings 2", price:279, image:"earrings2.jpeg", stock:20 },
+    { id:"e2", name:"Earrings 3", price:279, image:"earrings3.jpeg", stock:20 },
+    { id:"e3", name:"Earrings 4", price:279, image:"earrings4.jpeg", stock:20 },
+    { id:"e4", name:"Earrings 5", price:279, image:"earrings5.jpeg", stock:20 },
+    { id:"e5", name:"Earrings 6", price:279, image:"earrings6.jpeg", stock:20 },
+    { id:"e6", name:"Earrings 7", price:279, image:"earrings7.jpeg", stock:20 },
+    { id:"e7", name:"Earrings 8", price:279, image:"earrings8.jpeg", stock:20 },
+    { id:"e8", name:"Earrings 9", price:279, image:"earrings9.jpeg", stock:20 },
+    { id:"e9", name:"Earrings 9", price:279, image:"Earrings9.jpeg", stock:20 },
+    
   ],
   bangles: [
     { id:"bg1", name:"Thread Bangle 1", price:299, image:"Bangles5.jpeg", stock:10 },
