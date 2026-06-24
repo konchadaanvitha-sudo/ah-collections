@@ -23,7 +23,7 @@ const PRODUCTS = {
     { id:"c21", name:"Chain 21", price:399, image:"chain21.jpeg", stock:10 },
     { id:"c22", name:"Chain 23", price:399, image:"chain23.jpeg", stock:10 },
     { id:"c23", name:"Chain 24", price:399, image:"chain24.jpeg", stock:10 },
-    { id:"c24", name:"Chain 25", price:399, image:"chain25.jpeg", stock:10 },
+    { id:"c24", name:"Chain 25", price:399, image:"chain25.jpg", stock:10 },
     { id:"c25", name:"Chain 26", price:399, image:"chain26.jpeg", stock:10 },
     { id:"c26", name:"Chain 27", price:399, image:"chain27.jpeg", stock:10 },
     { id:"c27", name:"Chain 28", price:399, image:"chain28.jpeg", stock:10 },
