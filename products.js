@@ -73,7 +73,6 @@ const PRODUCTS = {
     { id:"bg3", name:"Thread Bangle 3", price:299, image:"bangles3.jpeg", stock:10 },
     { id:"bg4", name:"Thread Bangle 4", price:299, image:"bangles4.jpeg", stock:10 },
     { id:"bg5", name:"Thread Bangle 5", price:299, image:"bangles5.jpeg", stock:10 },
-    { id:"bg6", name:"Thread Bangle 6", price:299, image:"banglesdisplay.jpeg", stock:10 },
   ]
 };
 
