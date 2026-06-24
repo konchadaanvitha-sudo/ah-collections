@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Product Detail – AH Collections</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AH Collections</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <a href="#" class="back-link" id="back-link">← Back to Collection</a>
+</div>
+
+<div class="detail-page">
+  <div class="detail-grid">
+
+    <!-- LEFT: Big Image -->
+    <div>
+      <div class="detail-img-box">
+        <img id="detail-img" src="" alt=""/>
+      </div>
+    </div>
+
+    <!-- RIGHT: Info -->
+    <div class="detail-info">
+      <span class="detail-badge" id="detail-cat">Jewellery</span>
+      <h1 id="detail-name">Product Name</h1>
+      <div class="detail-price" id="detail-price">₹0</div>
+      <div class="detail-divider"></div>
+      <div class="detail-desc" id="detail-desc">Beautiful handcrafted jewellery from AH Collections. Anti-tarnish and skin-safe. Perfect for daily wear and special occasions.</div>
+      <div class="detail-divider"></div>
+
+      <div id="detail-stock-ok">
+        <div class="detail-qty-row">
+          <label>Quantity</label>
+          <div class="qty-box">
+            <button class="qty-btn" onclick="changeQty('detail',-1)">−</button>
+            <div class="qty-num" id="qty-detail">0</div>
+            <button class="qty-btn" onclick="changeQty('detail',1)">+</button>
+          </div>
+        </div>
+        <button class="detail-add-btn" id="detail-add-btn" onclick="detailAddToCart()">
+          Add to Cart
+        </button>
+      </div>
+
+      <div id="detail-stock-out" style="display:none">
+        <div class="detail-out">❌ Out of Stock</div>
+      </div>
+
+      <div style="background:#FDF8EC;border:1px solid var(--border);border-radius:6px;padding:14px;font-size:13px;color:#6B5320;line-height:1.6">
+        🚚 Ships Pan India &nbsp;·&nbsp; 💳 UPI &amp; Bank Transfer accepted<br/>
+        📦 Carefully packed with love
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="cart-float" onclick="window.location='cart.html'">🛒<span id="cart-count">0</span></div>
+
+<footer>
+  <div class="f-logo">AH Collections</div>
+  <p>© 2025 AH Collections &nbsp;·&nbsp; Handcrafted with Love &nbsp;·&nbsp; Ships Pan India</p>
+</footer>
+
+<script src="cart.js"></script>
+<script src="products.js"></script>
+<script>
+  var params = new URLSearchParams(window.location.search);
+  var cat    = params.get('cat') || 'chains';
+  var pid    = params.get('id');
+
+  // Back link
+  document.getElementById('back-link').href = 'category.html?cat=' + cat;
+
+  // Category labels
+  var catLabels = {
+    chains:    '📿 Anti-Tarnish Chains',
+    bracelets: '💛 Anti-Tarnish Bracelets',
+    earrings:  '✨ Earrings',
+    bangles:   '🪬 Thread Bangles'
+  };
+  document.getElementById('detail-cat').textContent = catLabels[cat] || 'Jewellery';
+
+  // Find product
+  var items   = PRODUCTS[cat] || [];
+  var product = items.find(function(p){ return p.id === pid; });
+
+  if (product) {
+    document.title = product.name + ' – AH Collections';
+    document.getElementById('detail-img').src = product.image;
+    document.getElementById('detail-img').alt = product.name;
+    document.getElementById('detail-name').textContent = product.name;
+    document.getElementById('detail-price').textContent = '₹' + product.price;
+
+    var stock = getStock(product.id, product.stock);
+    if (stock <= 0) {
+      document.getElementById('detail-stock-ok').style.display  = 'none';
+      document.getElementById('detail-stock-out').style.display = 'block';
+    }
+  } else {
+    document.getElementById('detail-name').textContent = 'Product not found';
+  }
+
+  function changeQty(id, delta) {
+    var el  = document.getElementById('qty-' + id);
+    var val = parseInt(el.textContent) + delta;
+    if (val < 0) val = 0;
+    if (val > 20) val = 20;
+    el.textContent = val;
+  }
+
+  function detailAddToCart() {
+    var qty = parseInt(document.getElementById('qty-detail').textContent);
+    if (qty === 0) {
+      var btn = document.getElementById('detail-add-btn');
+      btn.textContent = 'Select quantity first!';
+      btn.style.background = '#C0392B';
+      setTimeout(function(){
+        btn.textContent = 'Add to Cart';
+        btn.style.background = '';
+      }, 1800);
+      return;
+    }
+    if (!product) return;
+
+    var cart     = getCart();
+    var existing = cart.find(function(i){ return i.id === product.id; });
+    if (existing) {
+      existing.qty += qty;
+    } else {
+      cart.push({ id:product.id, name:product.name, price:product.price, image:product.image, qty:qty });
+    }
+    saveCart(cart);
+    updateCartBadge();
+
+    var btn = document.getElementById('detail-add-btn');
+    btn.textContent = '✓ Added to Cart!';
+    btn.style.background = '#639922';
+    setTimeout(function(){
+      btn.textContent = 'Add to Cart';
+      btn.style.background = '';
+    }, 1500);
+  }
+
+  updateCartBadge();
+</script>
+</body>
+</html>
