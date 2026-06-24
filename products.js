@@ -27,7 +27,7 @@ const PRODUCTS = {
     { id:"c25", name:"Chain 25", price:399, image:"chain26.jpeg",  stock:10 },
     { id:"c26", name:"Chain 26", price:399, image:"chain27.jpeg",  stock:10 },
     { id:"c27", name:"Chain 27", price:399, image:"chain28.jpeg",  stock:10 },
-    { id:"c28", name:"Chain 28", price:399, image:"earring9.jpeg", stock:10 },
+    { id:"c28", name:"Chain 28", price:399, image:"chain28.jpeg", stock:10 },
   ],
   bracelets: [
     { id:"b1",  name:"Bracelet 1",  price:349, image:"bracelet2.jpeg",  stock:10 },
