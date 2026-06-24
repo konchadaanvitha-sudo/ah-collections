@@ -70,6 +70,7 @@ const PRODUCTS = {
     { id:"bg5", name:"Thread Bangle 5", price:299, image:"bangles5.jpeg", stock:10 },
   ]
 };
+
 function getStock(productId, defaultStock) {
   var saved = localStorage.getItem('stock_' + productId);
   return saved !== null ? parseInt(saved) : defaultStock;
@@ -83,19 +84,23 @@ function renderProducts(cat) {
   var grid  = document.getElementById('products-grid');
   if (!grid) return;
   grid.innerHTML = '';
+
   items.forEach(function(p) {
     var stock      = getStock(p.id, p.stock);
     var outOfStock = stock <= 0;
+
     var card = document.createElement('div');
     card.className = 'product-card';
+
     card.innerHTML =
-      '<div class="product-img">' +
+      '<div class="product-img" onclick="window.location=\'detail.html?cat=' + cat + '&id=' + p.id + '\'">' +
         '<img src="' + p.image + '" alt="' + p.name + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.opacity=\'0.35\'"/>' +
         '<span class="ph-icon">' + catIcon(cat) + '</span>' +
         (outOfStock ? '<div class="out-of-stock-badge"><span>Out of Stock</span></div>' : '') +
+        '<div class="view-detail-hint">👁 View Details</div>' +
       '</div>' +
       '<div class="product-info">' +
-        '<h3>' + p.name + '</h3>' +
+        '<h3 style="cursor:pointer" onclick="window.location=\'detail.html?cat=' + cat + '&id=' + p.id + '\'">' + p.name + '</h3>' +
         '<div class="price">₹' + p.price + '</div>' +
         '<div class="product-controls">' +
           '<div class="qty-box">' +
@@ -110,6 +115,7 @@ function renderProducts(cat) {
           '</button>' +
         '</div>' +
       '</div>';
+
     grid.appendChild(card);
   });
 }
