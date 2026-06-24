@@ -6,44 +6,16 @@
 <title>AH Collections – Handcrafted Jewellery</title>
 <link rel="stylesheet" href="style.css"/>
 <style>
-/* ── MARQUEE SCROLLING BAR ── */
-.marquee-bar {
-  background: var(--gold-dark);
-  color: #fff;
-  padding: 9px 0;
-  overflow: hidden;
-  white-space: nowrap;
-  border-bottom: 1px solid var(--gold);
-}
-.marquee-track {
-  display: inline-block;
-  animation: marquee 28s linear infinite;
-}
-.marquee-track:hover { animation-play-state: paused; }
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.marquee-item {
-  display: inline-block;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 700;
-  padding: 0 40px;
-}
-.marquee-dot {
-  display: inline-block;
-  color: var(--gold-light);
-  font-size: 10px;
-  opacity: 0.7;
-  padding: 0 8px;
-}
+.marquee-bar{background:var(--gold-dark);color:#fff;padding:9px 0;overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--gold)}
+.marquee-track{display:inline-block;animation:marquee 28s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{display:inline-block;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:0 40px}
+.marquee-dot{display:inline-block;color:var(--gold-light);font-size:10px;opacity:0.7;padding:0 8px}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">AH Collections</div>
   <div class="nav-links">
@@ -88,25 +60,33 @@
   </div>
 </div>
 
-<!-- OUR COLLECTIONS — display only, NOT clickable, NO Shop Now button -->
+<!-- OUR COLLECTIONS — display only, not clickable -->
 <section class="collections-section">
   <p class="sec-sub">What We Offer</p>
   <h2 class="sec-title">Our Collections</h2>
   <div class="collections-grid">
     <div class="coll-item">
-      <div class="img-wrap"><img src="images/chaindispaly.jpeg" alt="Chains" onerror="this.parentNode.innerHTML='<div class=ph-fallback>📿<span>Add Photo</span></div>'"/></div>
+      <div class="img-wrap">
+        <img src="Chain2.jpeg" alt="Chains" onerror="this.parentNode.innerHTML='<div class=ph-fallback>📿<span>Chains</span></div>'"/>
+      </div>
       <p>Anti-Tarnish Chains</p>
     </div>
     <div class="coll-item">
-      <div class="img-wrap"><img src="images/braceletdisplay.jpeg" alt="Bracelets" onerror="this.parentNode.innerHTML='<div class=ph-fallback>💛<span>Add Photo</span></div>'"/></div>
+      <div class="img-wrap">
+        <img src="braceletdisplay1.jpeg" alt="Bracelets" onerror="this.parentNode.innerHTML='<div class=ph-fallback>💛<span>Bracelets</span></div>'"/>
+      </div>
       <p>Anti-Tarnish Bracelets</p>
     </div>
     <div class="coll-item">
-      <div class="img-wrap"><img src="images/earringsdiaplay.jpeg" alt="Earrings" onerror="this.parentNode.innerHTML='<div class=ph-fallback>✨<span>Add Photo</span></div>'"/></div>
+      <div class="img-wrap">
+        <img src="earringsdisplay1.jpeg" alt="Earrings" onerror="this.parentNode.innerHTML='<div class=ph-fallback>✨<span>Earrings</span></div>'"/>
+      </div>
       <p>Earrings</p>
     </div>
     <div class="coll-item">
-      <div class="img-wrap"><img src="images/banglesdisplay.jpeg" alt="Thread Bangles" onerror="this.parentNode.innerHTML='<div class=ph-fallback>🪬<span>Add Photo</span></div>'"/></div>
+      <div class="img-wrap">
+        <img src="bangledisplay1.jpeg" alt="Thread Bangles" onerror="this.parentNode.innerHTML='<div class=ph-fallback>🪬<span>Bangles</span></div>'"/>
+      </div>
       <p>Handcrafted Thread Bangles</p>
     </div>
   </div>
