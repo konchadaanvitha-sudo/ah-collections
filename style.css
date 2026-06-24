@@ -80,11 +80,11 @@ nav{
 }
 .coll-item{text-align:center}
 .coll-item .img-wrap{
-  width:100%;height:200px;border-radius:6px;overflow:hidden;
+  width:100%;height:320px;border-radius:6px;overflow:hidden;
   border:1px solid var(--border);background:#F0E9D0;
   display:flex;align-items:center;justify-content:center;
 }
-.coll-item .img-wrap img{width:100%;height:100%;object-fit:cover}
+.coll-item .img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center;}
 .coll-item p{
   margin-top:10px;font-size:12px;letter-spacing:2px;
   text-transform:uppercase;color:var(--gold-dark);font-weight:700;
