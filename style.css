@@ -331,3 +331,162 @@ footer p{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.55}
   background:#F0E9D0;
 }
 .ph-fallback span{font-size:11px;color:#8B7040;letter-spacing:2px;text-transform:uppercase}
+
+/* ── BIGGER DISPLAY IMAGES for shop category cards ── */
+.shop-cat-img{
+  width:100%;
+  height:320px; /* increased from 220px */
+  overflow:hidden;
+  background:#F0E9D0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.shop-cat-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+
+/* Bangles specifically — taller to show full bangle */
+.shop-cat-card:nth-child(4) .shop-cat-img,
+.shop-cat-card:nth-child(1) .shop-cat-img,
+.shop-cat-card:nth-child(2) .shop-cat-img {
+  height:340px;
+}
+
+/* ── PRODUCT DETAIL PAGE ── */
+.detail-page{
+  max-width:900px;
+  margin:0 auto;
+  padding:32px 48px 60px;
+}
+.detail-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:start;
+}
+.detail-img-box{
+  width:100%;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:#F0E9D0;
+  aspect-ratio:1/1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.detail-img-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.detail-info{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.detail-info h1{
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  font-weight:400;
+  color:var(--dark);
+}
+.detail-info .detail-price{
+  font-size:26px;
+  color:var(--gold-dark);
+  font-weight:700;
+}
+.detail-info .detail-desc{
+  font-size:14px;
+  color:#6B5320;
+  line-height:1.8;
+}
+.detail-divider{
+  height:1px;
+  background:var(--border);
+  margin:4px 0;
+}
+.detail-qty-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.detail-qty-row label{
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold-dark);
+  font-weight:700;
+}
+.detail-add-btn{
+  width:100%;
+  padding:14px;
+  background:var(--gold);
+  color:#fff;
+  border:none;
+  font-size:13px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  border-radius:4px;
+  cursor:pointer;
+  font-weight:700;
+  font-family:'Lato',sans-serif;
+  transition:background .2s;
+}
+.detail-add-btn:hover{background:var(--gold-dark)}
+.detail-add-btn:disabled{background:#ccc;cursor:not-allowed}
+.detail-badge{
+  display:inline-block;
+  padding:5px 14px;
+  background:var(--gold-light);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold-dark);
+  border-radius:2px;
+  font-weight:700;
+}
+.detail-out{
+  background:#FFF0EE;
+  color:#C0392B;
+  border:1px solid #C0392B;
+  border-radius:4px;
+  padding:12px;
+  text-align:center;
+  font-weight:700;
+  font-size:14px;
+}
+
+/* Make product cards clickable looking */
+.product-card{cursor:pointer;}
+.product-card:hover{
+  box-shadow:0 8px 28px rgba(201,168,76,.22);
+  transform:translateY(-2px);
+  transition:all .2s;
+}
+.product-card .product-img{position:relative;}
+.view-detail-hint{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  background:rgba(139,105,20,.75);
+  color:#fff;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-align:center;
+  padding:7px;
+  opacity:0;
+  transition:opacity .2s;
+  font-weight:700;
+}
+.product-card:hover .view-detail-hint{opacity:1;}
+
+@media(max-width:700px){
+  .detail-grid{grid-template-columns:1fr}
+  .detail-page{padding:20px}
+  .shop-cat-img{height:220px !important}
+}
