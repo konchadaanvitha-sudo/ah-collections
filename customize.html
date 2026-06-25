@@ -29,7 +29,10 @@
       </div>
       <div class="form-section">
         <label>WhatsApp Number *</label>
-        <input type="tel" id="cust-phone" placeholder="e.g. 9876543210" required/>
+        <input type="tel" id="cust-phone" placeholder="e.g. 9876543210" required
+            maxlength="10" pattern="[6-9][0-9]{9}"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)"
+            title="Enter valid 10-digit Indian mobile number"/>
       </div>
     </div>
     <div class="form-row">
@@ -151,7 +154,7 @@
       "*Occasion:* " + occasion + "\n\n" +
       "*Design Notes:*\n" + notes + "\n\n" +
       "Please confirm my order and send the payment QR code. Thank you! 🙏";
-    var whatsapp = "916304240689"; // CHANGE THIS to your WhatsApp number
+    var whatsapp = "919876543210"; // CHANGE THIS to your WhatsApp number
     window.open("https://wa.me/" + whatsapp + "?text=" + encodeURIComponent(msg), '_blank');
     document.getElementById('success-box').style.display = 'block';
     document.querySelector('.submit-cust-btn').textContent = '✓ Request Sent!';
