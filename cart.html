@@ -56,7 +56,10 @@
         </div>
         <div class="cf-group">
           <label>Phone / WhatsApp *</label>
-          <input type="tel" id="cust-phone" placeholder="e.g. 9876543210" required/>
+          <input type="tel" id="cust-phone" placeholder="e.g. 9876543210" required
+            maxlength="10" pattern="[6-9][0-9]{9}"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)"
+            title="Enter valid 10-digit Indian mobile number"/>
         </div>
       </div>
       <div class="cf-row">
